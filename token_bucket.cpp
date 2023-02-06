@@ -14,7 +14,7 @@ int main() {
   cout<<"Enter number of packets: ";
   cin>>n;
   
-  cout<<"Enter packet sizes: ";
+  cout<<"Enter no. of packets: ";
   for (int i=0;i<n;i++){
       cin>>request[i];
   }
