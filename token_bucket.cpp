@@ -1,39 +1,28 @@
-#include <iostream>
-#include <chrono>
-#include <thread>
+#include<iostream>
 using namespace std;
 
-int main() {
-  int tokens = 0; // initial number of tokens in the bucket
-  int rate = 10; // rate at which tokens are added to the bucket
-  int capacity = 100; // maximum number of tokens the bucket can hold
+int main(){
+    int no_of_queries = 4;
+    int bucket_size = 10;
+    int input_packet_size;
+    int output_packet_size = 1;
+    int stored_buffer_size = 0;
+    int size_left;
 
-  int request[100];
-  
-  int n;
-  cout<<"Enter number of packets: ";
-  cin>>n;
-  
-  cout<<"Enter packet sizes: ";
-  for (int i=0;i<n;i++){
-      cin>>request[i];
-  }
-
-  for (int i=0;i<n;i++) {
-    // add tokens to the bucket at a fixed rate
-    tokens = min(tokens + rate, capacity);
-
-    // wait for 1 second
-    this_thread::sleep_for(chrono::seconds(1));
-
-    if (tokens >= request[i]) {
-      // remove the requested tokens from the bucket
-      tokens -= request[i];
-      cout << "Request granted, tokens remaining: " << tokens << endl;
-    } else {
-      cout << "Request denied, not enough tokens: " << tokens << endl;
+    for(int i=0; i<no_of_queries; i++){
+        
+        cout<<"Input Packet Size: ";
+        cin>>input_packet_size;
+        
+        size_left = bucket_size - stored_buffer_size;
+        if (input_packet_size<=size_left){
+            stored_buffer_size+=input_packet_size;
+        }
+        else{
+            cout << "Packet Dropped" <<endl;
+        }
+        cout << "Stored Buffer Size: " << stored_buffer_size <<endl;
+        stored_buffer_size -= output_packet_size;
     }
-  }
 
-  return 0;
 }
