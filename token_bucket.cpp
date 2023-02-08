@@ -11,10 +11,10 @@ int main() {
   int request[100];
   
   int n;
-  cout<<"Enter number of packets: ";
+  cout<<"Enter number of requests: ";
   cin>>n;
   
-  cout<<"Enter no. of packets: ";
+  cout<<"Enter no. of packets per request: ";
   for (int i=0;i<n;i++){
       cin>>request[i];
   }
